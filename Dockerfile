@@ -1,5 +1,6 @@
 FROM jboss/keycloak:latest
 
+USER root
 ENV DB_VENDOR POSTGRES
 
 ADD tools /usr/bin/
