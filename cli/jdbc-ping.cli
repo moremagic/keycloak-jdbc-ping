@@ -35,3 +35,13 @@
 /socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd:write-attribute(name="interface",value="public")
 /socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd:write-attribute(name="port",value="57600")
 
+
+# Debug logging
+/subsystem=logging/logger=org.jgroups:add
+/subsystem=logging/logger=org.jgroups:write-attribute(name=level,value=DEBUG)
+/subsystem=logging/console-handler=CONSOLE/:write-attribute(name=level,value=DEBUG)
+
+# access-log
+/subsystem=undertow/server=default-server/host=default-host/setting=access-log:add
+/subsystem=undertow/server=default-server/host=default-host/setting=access-log:write-attribute(name="use-server-log",value="true")
+

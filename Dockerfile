@@ -2,7 +2,6 @@ FROM jboss/keycloak:latest
 
 USER root
 RUN yum install -y iproute
-
 ENV DB_VENDOR POSTGRES
 
 ADD tools /usr/bin/
