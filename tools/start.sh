@@ -1,7 +1,9 @@
 #! /bin/bash
 HOST_ADDR=`ip -f inet -o addr show $(ip route | grep default | awk '{print $NF}') | cut -d" " -f 7 | cut -d/ -f 1`
-if [ "$(hostname -i)" = "" ]; then
-    echo $HOST_ADDR    $(hostname) >> /etc/hosts
+if [ "$(hostname -i)" = "" ]; theni
+    sed "/^.*`hostname`$/d" /etc/hosts > ~/hosts.new
+    echo $HOST_ADDR    $(hostname) >> ~/hosts.new
+    cp /etc/hosts /etc/hosts.org && cp ~/hosts.new /etc/hosts
 fi
 
 echo $(hostname -i)
