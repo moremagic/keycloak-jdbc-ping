@@ -7,5 +7,6 @@ if [ "$(hostname -i)" = "" ]; then
 fi
 
 echo $(hostname -i)
+cat hosts
 /opt/jboss/docker-entrypoint.sh $@ -Djboss.bind.address.private=$HOST_ADDR -Djboss.bind.address.management=$HOST_ADDR -Djgroups.bind.address=$HOST_ADDR
 
