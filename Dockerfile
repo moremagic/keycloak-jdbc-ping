@@ -11,7 +11,7 @@ ADD cli /opt/jboss/keycloak/cli/
 RUN cd /opt/jboss/keycloak && bin/jboss-cli.sh --file=cli/postgres-ha.cli 
 RUN rm -rf /opt/jboss/keycloak/standalone/configuration/standalone_xml_history
 
-EXPOSE 8080 9990 7600 57600
+EXPOSE 8080 8443 9990 7600 57600
 
 ENTRYPOINT [ "/usr/bin/start.sh" ]
 CMD ["-b", "0.0.0.0", "--server-config", "standalone-ha.xml"]
