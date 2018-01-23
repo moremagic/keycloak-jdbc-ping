@@ -8,5 +8,5 @@ fi
 
 echo $(hostname -i)
 cat /etc/hosts
-/opt/jboss/docker-entrypoint.sh $@ -Djboss.bind.address.private=$HOST_ADDR -Djboss.bind.address.management=$HOST_ADDR -Djgroups.bind.address=$HOST_ADDR
+/opt/jboss/docker-entrypoint.sh $@ -Djboss.bind.address.private=$HOST_ADDR -Djboss.bind.address.management=$HOST_ADDR -Djgroups.bind.address=$HOST_ADDR -Djava.net.preferIPv4Stack=true -Djgroups.bind_addr= 
 
