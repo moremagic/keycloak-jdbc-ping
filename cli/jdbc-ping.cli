@@ -31,9 +31,9 @@
 /subsystem=jgroups/channel=ee:add(stack=tcpping)
 /subsystem=jgroups:write-attribute(name=default-channel, value=ee)
 
-/socket-binding-group=standard-sockets/socket-binding=jgroups-tcp:write-attribute(name="interface",value="public")
+/socket-binding-group=standard-sockets/socket-binding=jgroups-tcp:write-attribute(name="interface",value="private")
 /socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd:add()
-/socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd:write-attribute(name="interface",value="public")
+/socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd:write-attribute(name="interface",value="private")
 /socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd:write-attribute(name="port",value="57600")
 
 
