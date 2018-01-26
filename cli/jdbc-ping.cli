@@ -43,10 +43,10 @@
 
 # Debug logging
 /subsystem=logging/logger=org.jgroups:add
-/subsystem=logging/logger=org.jgroups:write-attribute(name=level,value=ALL)
-/subsystem=logging/console-handler=CONSOLE/:write-attribute(name=level,value=ALL)
-#/subsystem=logging/logger=org.jgroups:write-attribute(name=level,value=DEBUG)
-#/subsystem=logging/console-handler=CONSOLE/:write-attribute(name=level,value=DEBUG)
+#/subsystem=logging/logger=org.jgroups:write-attribute(name=level,value=ALL)
+#/subsystem=logging/console-handler=CONSOLE/:write-attribute(name=level,value=ALL)
+/subsystem=logging/logger=org.jgroups:write-attribute(name=level,value=DEBUG)
+/subsystem=logging/console-handler=CONSOLE/:write-attribute(name=level,value=DEBUG)
 
 # access-log
 /subsystem=undertow/server=default-server/host=default-host/setting=access-log:add
