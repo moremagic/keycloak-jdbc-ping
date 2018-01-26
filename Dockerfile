@@ -18,7 +18,7 @@ RUN echo 'root:root' | chpasswd
 RUN /usr/sbin/sshd-keygen
 
 
-EXPOSE 22 8080 8443 9990 7600 57600
+EXPOSE 22 8080 8443 9990 7600 57600 45700
 
 ENTRYPOINT [ "/usr/bin/start.sh" ]
 CMD ["-b", "0.0.0.0", "--server-config", "standalone-ha.xml"]
