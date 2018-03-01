@@ -2,9 +2,23 @@
 /subsystem=infinispan/cache-container=keycloak/replicated-cache=sessions:add()
 /subsystem=infinispan/cache-container=keycloak/replicated-cache=sessions:write-attribute(name="mode",value="SYNC")
 
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=authenticationSessions:remove
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=offlineSessions:remove
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=clientSessions:remove
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=offlineClientSessions:remove
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=loginFailures:remove
+
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=authenticationSessions:add(mode="SYNC",owners="2")
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=offlineSessions:add(mode="SYNC",owners="2")
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=clientSessions:add(mode="SYNC",owners="2")
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=offlineClientSessions:add(mode="SYNC",owners="2")
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=loginFailures:add(mode="SYNC",owners="2")
+
 /subsystem=jgroups/stack=tcpping:add()
 /subsystem=jgroups/stack=tcpping/transport=TCP:add(socket-binding=jgroups-tcp)
 /subsystem=jgroups/stack=tcpping/transport=TCP/property=external_addr:add(value=${jgroups.bind.address:127.0.0.1})
+/subsystem=jgroups/stack=tcpping/transport=TCP/property=bind_addr:add(value=${jgroups.bind_addr:SITE_LOCAL})
+/subsystem=jgroups/stack=tcpping/protocol=MPING:add(socket-binding=jgroups-mping)
 
 /subsystem=jgroups/stack=tcpping/protocol=JDBC_PING:add()
 /subsystem=jgroups/stack=tcpping/protocol=JDBC_PING/property=datasource_jndi_name:add(value=java:jboss/datasources/KeycloakDS)
@@ -13,7 +27,6 @@
 /subsystem=jgroups/stack=tcpping/protocol=JDBC_PING/property=delete_single_sql:add(value="DELETE FROM JGROUPSPING WHERE own_addr=? AND cluster_name=?")
 /subsystem=jgroups/stack=tcpping/protocol=JDBC_PING/property=select_all_pingdata_sql:add(value="SELECT ping_data FROM JGROUPSPING WHERE cluster_name=?;")
 
-/subsystem=jgroups/stack=tcpping/protocol=MPING:add(socket-binding=jgroups-mping)
 /subsystem=jgroups/stack=tcpping/protocol=MERGE3:add()
 /subsystem=jgroups/stack=tcpping:add-protocol(type="FD_SOCK",socket-binding="jgroups-tcp-fd")
 /subsystem=jgroups/stack=tcpping/protocol=FD_SOCK/property=external_addr:add(value=${jgroups.bind.address:127.0.0.1})
@@ -30,14 +43,20 @@
 /subsystem=jgroups/channel=ee:add(stack=tcpping)
 /subsystem=jgroups:write-attribute(name=default-channel, value=ee)
 
-/socket-binding-group=standard-sockets/socket-binding=jgroups-tcp:write-attribute(name="interface",value="public")
+/socket-binding-group=standard-sockets/socket-binding=jgroups-tcp:write-attribute(name="interface",value="private")
 /socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd:add()
-/socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd:write-attribute(name="interface",value="public")
+/socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd:write-attribute(name="interface",value="private")
 /socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd:write-attribute(name="port",value="57600")
 
 
+# 未使用設定の削除
+/subsystem=jgroups/stack=tcp:remove
+/subsystem=jgroups/stack=udp:remove
+
 # Debug logging
 /subsystem=logging/logger=org.jgroups:add
+#/subsystem=logging/logger=org.jgroups:write-attribute(name=level,value=ALL)
+#/subsystem=logging/console-handler=CONSOLE/:write-attribute(name=level,value=ALL)
 /subsystem=logging/logger=org.jgroups:write-attribute(name=level,value=DEBUG)
 /subsystem=logging/console-handler=CONSOLE/:write-attribute(name=level,value=DEBUG)
 
