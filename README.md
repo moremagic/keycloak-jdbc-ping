@@ -14,5 +14,5 @@ $ docker run --name postgres --net mynet -e POSTGRES_DATABASE=keycloak -e POSTGR
 
 keycloak start
 ```console
-$ docker run -dP --name keycloak --network mynet -e POSTGRES_DATABASE=keycloak -e POSTGRES_USER=keycloak -e POSTGRES_PASSWORD=password moremagic/keycloak-jdbc-ping
+$ docker run -dP --name keycloak --network mynet -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e POSTGRES_DATABASE=keycloak -e POSTGRES_USER=keycloak -e POSTGRES_PASSWORD=password moremagic/keycloak-jdbc-ping
 ```
