@@ -1,0 +1,16 @@
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=sessions:remove
+/subsystem=infinispan/cache-container=keycloak/replicated-cache=sessions:add()
+/subsystem=infinispan/cache-container=keycloak/replicated-cache=sessions:write-attribute(name="mode",value="SYNC")
+
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=authenticationSessions:remove
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=offlineSessions:remove
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=clientSessions:remove
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=offlineClientSessions:remove
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=loginFailures:remove
+
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=authenticationSessions:add(mode="SYNC",owners="2")
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=offlineSessions:add(mode="SYNC",owners="2")
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=clientSessions:add(mode="SYNC",owners="2")
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=offlineClientSessions:add(mode="SYNC",owners="2")
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=loginFailures:add(mode="SYNC",owners="2")
+
