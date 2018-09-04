@@ -8,7 +8,7 @@ ADD tools /usr/bin/
 RUN chmod +x /usr/bin/start.sh
 
 ADD cli /opt/jboss/keycloak/cli/
-RUN cd /opt/jboss/keycloak && bin/jboss-cli.sh --file=cli/postgres-ha.cli 
+RUN cd /opt/jboss/keycloak && bin/jboss-cli.sh --file=cli/jdbc-ping.cli
 RUN rm -rf /opt/jboss/keycloak/standalone/configuration/standalone_xml_history
 
 
