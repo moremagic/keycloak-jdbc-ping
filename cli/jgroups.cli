@@ -2,7 +2,7 @@
 /subsystem=jgroups/stack=tcpping/transport=TCP:add(socket-binding=jgroups-tcp)
 /subsystem=jgroups/stack=tcpping/transport=TCP/property=external_addr:add(value=${jgroups.bind.address:127.0.0.1})
 /subsystem=jgroups/stack=tcpping/transport=TCP/property=bind_addr:add(value=${jgroups.bind_addr:SITE_LOCAL})
-/subsystem=jgroups/stack=tcpping/protocol=MPING:add(socket-binding=jgroups-mping)
+#/subsystem=jgroups/stack=tcpping/protocol=MPING:add(socket-binding=jgroups-mping)
 
 /subsystem=jgroups/stack=tcpping/protocol=JDBC_PING:add()
 /subsystem=jgroups/stack=tcpping/protocol=JDBC_PING/property=datasource_jndi_name:add(value=java:jboss/datasources/KeycloakDS)
