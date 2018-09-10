@@ -5,6 +5,7 @@
 
 /subsystem=jgroups/stack=tcpping/protocol=JDBC_PING:add()
 /subsystem=jgroups/stack=tcpping/protocol=JDBC_PING/property=datasource_jndi_name:add(value=java:jboss/datasources/KeycloakDS)
+/subsystem=jgroups/stack=tcpping/protocol=JDBC_PING/property=clear_table_on_view_change:add(value=true)
 /subsystem=jgroups/stack=tcpping/protocol=JDBC_PING/property=initialize_sql:add(value="CREATE TABLE IF NOT EXISTS JGROUPSPING (own_addr varchar(200) NOT NULL,bind_addr varchar(200) NOT NULL,created timestamp NOT NULL,cluster_name varchar(200) NOT NULL,ping_data BYTEA,constraint PK_JGROUPSPING PRIMARY KEY (own_addr, cluster_name))")
 /subsystem=jgroups/stack=tcpping/protocol=JDBC_PING/property=insert_single_sql:add(value="INSERT INTO JGROUPSPING (own_addr, bind_addr, created, cluster_name, ping_data) values (?,'${jgroups.bind.address:127.0.0.1}',NOW(), ?, ?)")
 /subsystem=jgroups/stack=tcpping/protocol=JDBC_PING/property=delete_single_sql:add(value="DELETE FROM JGROUPSPING WHERE own_addr=? AND cluster_name=?")
@@ -19,6 +20,7 @@
 /subsystem=jgroups/stack=tcpping/protocol=UNICAST3:add()
 /subsystem=jgroups/stack=tcpping/protocol=pbcast.STABLE:add()
 /subsystem=jgroups/stack=tcpping/protocol=pbcast.GMS:add()
+/subsystem=jgroups/stack=tcpping/protocol=pbcast.GMS/property=max_join_attempts:add(value=5)
 /subsystem=jgroups/stack=tcpping/protocol=MFC:add()
 /subsystem=jgroups/stack=tcpping/protocol=FRAG2:add()
 
