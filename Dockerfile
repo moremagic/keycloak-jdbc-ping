@@ -1,4 +1,4 @@
-FROM jboss/keycloak:4.3.0.Final
+FROM jboss/keycloak:4.5.0.Final
 
 USER root
 RUN yum install -y iproute
@@ -21,4 +21,4 @@ RUN /usr/sbin/sshd-keygen
 EXPOSE 22 8080 8443 9990 7600 57600 45700
 
 ENTRYPOINT [ "/usr/bin/start.sh" ]
-CMD ["-b", "0.0.0.0", "--server-config", "standalone-ha.xml"]
+CMD ["-b", "0.0.0.0"]
