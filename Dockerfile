@@ -1,4 +1,4 @@
-FROM jboss/keycloak:4.5.0.Final
+FROM jboss/keycloak:4.8.3.Final
 
 USER root
 RUN yum install -y iproute
