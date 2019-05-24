@@ -1,0 +1,4 @@
+/subsystem=keycloak-server/spi=eventsListener/:add
+/subsystem=keycloak-server/spi=eventsListener/provider=com\.larscheidschmitzhermes\:keycloak-monitoring-prometheus/:add(enabled=true)
+/subsystem=keycloak-server/spi=eventsListener/provider=com\.larscheidschmitzhermes\:keycloak-monitoring-prometheus/:map-put(name=properties,key=eventsDirectory,value="${env.EVENTS_DIRECTORY:/opt/jboss/metrics}")
+
