@@ -1,3 +1,6 @@
+# proxy-address-forwarding
+/subsystem=undertow/server=default-server/http-listener=default/:write-attribute(name=proxy-address-forwarding,value=true)
+
 # access-log
 /subsystem=undertow/server=default-server/host=default-host/setting=access-log:add
 /subsystem=undertow/server=default-server/host=default-host/setting=access-log:write-attribute(name="use-server-log",value="true")
