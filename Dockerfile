@@ -1,4 +1,4 @@
-FROM jboss/keycloak:8.0.0
+FROM jboss/keycloak:8.0.1
 
 USER root
 RUN microdnf update -y
